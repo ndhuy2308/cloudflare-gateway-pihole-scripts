@@ -42,13 +42,13 @@ jobs:
         run: bash ./get_recommended_filters.sh
         env:
           BLOCKLIST_URLS: ${{ vars.BLOCKLIST_URLS }}
-
+      - name: Keep alive 
+        uses: gautamkrishnar/keepalive-workflow@v1
+        
       - name: Delete old rules and lists
         run: |
           node cf_gateway_rule_delete.js
           node cf_list_delete.js
-      - name: Keep alive 
-        uses: gautamkrishnar/keepalive-workflow@v1
         env:
           CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
           CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
