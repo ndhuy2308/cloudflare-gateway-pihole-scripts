@@ -42,7 +42,7 @@ jobs:
         run: bash ./get_recommended_filters.sh
         env:
           BLOCKLIST_URLS: ${{ vars.BLOCKLIST_URLS }}
-            - name: Generate
+      - name: Generate
         run: |
           echo "Temp" >> ./temp.txt
       - name: Keep
