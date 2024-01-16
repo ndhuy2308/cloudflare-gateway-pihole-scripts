@@ -42,8 +42,18 @@ jobs:
         run: bash ./get_recommended_filters.sh
         env:
           BLOCKLIST_URLS: ${{ vars.BLOCKLIST_URLS }}
-      - name: Keep alive 
-        uses: gautamkrishnar/keepalive-workflow@v1
+            - name: Generate
+        run: |
+          echo "Temp" >> ./temp.txt
+      - name: Keep
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: keep
+          skip_checkout: true
+          skip_dirty_check: true
+          push_options: '--force'
+          file_pattern: ./temp.txt
+          commit_message: Bump
         
       - name: Delete old rules and lists
         run: |
